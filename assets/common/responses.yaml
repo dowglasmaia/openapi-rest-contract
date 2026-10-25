@@ -1,0 +1,81 @@
+components:
+    schemas:
+        ProblemDetail:
+            type: object
+            description: RFC 7807 problem details
+            properties:
+                type:
+                    type: string
+                    format: uri
+                title:
+                    type: string
+                status:
+                    type: integer
+                detail:
+                    type: string
+                instance:
+                    type: string
+                traceId:
+                    type: string
+                correlationId:
+                    type: string
+                errors:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/FieldViolation'
+        FieldViolation:
+            type: object
+            properties:
+                field:
+                    type: string
+                message:
+                    type: string
+    responses:
+        BadRequestResponse:
+            description: Invalid request payload
+            content:
+                application/problem+json:
+                    schema:
+                        $ref: '#/components/schemas/ProblemDetail'
+        UnauthorizedResponse:
+            description: Authentication required or invalid credentials
+            content:
+                application/problem+json:
+                    schema:
+                        $ref: '#/components/schemas/ProblemDetail'
+        ForbiddenResponse:
+            description: Access denied
+            content:
+                application/problem+json:
+                    schema:
+                        $ref: '#/components/schemas/ProblemDetail'
+        NotFoundResponse:
+            description: Resource not found
+            content:
+                application/problem+json:
+                    schema:
+                        $ref: '#/components/schemas/ProblemDetail'
+        ConflictResponse:
+            description: Resource conflict
+            content:
+                application/problem+json:
+                    schema:
+                        $ref: '#/components/schemas/ProblemDetail'
+        TooManyRequestsResponse:
+            description: Too many requests
+            content:
+                application/problem+json:
+                    schema:
+                        $ref: '#/components/schemas/ProblemDetail'
+        BadGatewayResponse:
+            description: Upstream service failure
+            content:
+                application/problem+json:
+                    schema:
+                        $ref: '#/components/schemas/ProblemDetail'
+        InternalServerErrorResponse:
+            description: Internal server error
+            content:
+                application/problem+json:
+                    schema:
+                        $ref: '#/components/schemas/ProblemDetail'

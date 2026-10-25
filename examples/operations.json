@@ -1,0 +1,60 @@
+{
+  "info": { "title": "Customer API", "version": "1.0.0" },
+  "operations": [
+    {
+      "profile": "customer",
+      "method": "GET",
+      "path": "/customers/{customerId}",
+      "operationId": "getCustomer",
+      "summary": "Get a customer",
+      "parameters": [{ "name": "customerId", "in": "path", "schema": { "type": "integer" } }],
+      "responses": {
+        "200": { "description": "Customer found", "example": { "id": 1001, "name": "John Doe", "email": "john@example.com" } },
+        "404": { "description": "Customer not found" }
+      }
+    },
+    {
+      "profile": "customer",
+      "method": "POST",
+      "path": "/customers",
+      "operationId": "createCustomer",
+      "summary": "Create a customer",
+      "requestBody": { "required": true, "example": { "name": "John Doe", "email": "john@example.com" } },
+      "responses": { "201": { "description": "Customer created", "example": { "id": 1001, "name": "John Doe", "email": "john@example.com" } } }
+    },
+    {
+      "profile": "customer",
+      "method": "PUT",
+      "path": "/customers/{customerId}",
+      "operationId": "replaceCustomer",
+      "summary": "Replace a customer",
+      "requestBody": { "required": true, "example": { "name": "Jane Doe", "email": "jane@example.com" } },
+      "responses": { "200": { "description": "Customer replaced", "example": { "id": 1001, "name": "Jane Doe", "email": "jane@example.com" } } }
+    },
+    {
+      "profile": "customer",
+      "method": "PATCH",
+      "path": "/customers/{customerId}",
+      "operationId": "updateCustomer",
+      "summary": "Update selected customer fields",
+      "requestBody": { "required": true, "example": { "email": "new@example.com" } },
+      "responses": { "200": { "description": "Customer updated", "example": { "id": 1001, "name": "Jane Doe", "email": "new@example.com" } } }
+    },
+    {
+      "profile": "customer",
+      "method": "DELETE",
+      "path": "/customers/{customerId}",
+      "operationId": "deleteCustomer",
+      "summary": "Delete a customer",
+      "responses": { "204": { "description": "Customer deleted" } }
+    },
+    {
+      "profile": "customer",
+      "method": "HEAD",
+      "path": "/customers/{customerId}",
+      "operationId": "headCustomer",
+      "summary": "Get customer response metadata",
+      "responses": { "200": { "description": "Customer exists" }, "404": { "description": "Customer not found" } }
+    }
+  ]
+}
